@@ -17,7 +17,7 @@ namespace ControleDeProcessos.MVC
 
         public PreInscricaoDTO Executar(PreInscricaoDTO preInscricaoDTO)
         {
-            return _proxy.Executar(preInscricaoDTO);
+            return (PreInscricaoDTO)_proxy.ProcessoPreInscricao.Upload(preInscricaoDTO);
         }
     }
 }

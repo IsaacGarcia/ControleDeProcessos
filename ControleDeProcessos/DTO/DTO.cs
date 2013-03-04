@@ -16,5 +16,6 @@ namespace ControleDeProcessos
 
         public string Nome { get; set; }
 
+        public string Acao { get; set; }
     }
 }

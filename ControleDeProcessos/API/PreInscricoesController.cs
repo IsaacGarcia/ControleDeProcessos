@@ -1,5 +1,6 @@
 ﻿using ControleDeProcessos.Domain;
 using ControleDeProcessos.Domain.ComponenteDePreInscricao;
+using Stateless;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,33 @@ namespace ControleDeProcessos.API
 
         protected override DTO ProximoPassoEspecifico(DTO dto, Transacao ultimaTransacao)
         {
-            Repositorio repositorio = new Repositorio();
-            PreInscricao preInscricao = repositorio.ObterPreInscricaoDeAcordoComA(ultimaTransacao);
+            PreInscricao preInscricao = new PreInscricao();
 
-            preInscricao.Estado.DTO = (PreInscricaoDTO)dto;
-            preInscricao.ProximoEstado();
+            // Observer
+            preInscricao.Processar("jhghjG");
 
-            dto.UltimaTransacao = ultimaTransacao;
-
-            return new PreInscricaoDTO { Esta = preInscricao.Esta };
+            return new PreInscricaoDTO();
         }
 
+        protected override void ConfigurarMaquina(StateMachine<string, string> maquina)
+        {
+            maquina.Configure("Iniciada")
+                .Permit("Carregar", "Carregada")
+                .Permit("Rejeitar", "Rejeitada");
 
+            maquina.Configure("Rejeitada")
+                .Permit("Carregar", "Carregada");
+
+            maquina.Configure("Carregada")
+                .Permit("PreProcessar", "PreProcessada")
+                .Permit("Rejeitar", "Rejeitada");
+
+            maquina.Configure("PreProcessada")
+                .Permit("Processar", "Processada")
+                .Permit("Rejeitar", "Rejeitada");
+
+            maquina.Configure("Processada")
+                .Permit("Imprimir", "Impressa");
+        }
     }
 }

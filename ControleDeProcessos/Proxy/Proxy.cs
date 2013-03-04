@@ -12,6 +12,8 @@ namespace ControleDeProcessos
     {
         private GerenciadorDeTransacao gerenciadorDeTransacao;
 
+        public ProcessoPreInscricao ProcessoPreInscricao { get; set; }
+
         public Proxy()
         {
             gerenciadorDeTransacao = new GerenciadorDeTransacao();
@@ -24,9 +26,9 @@ namespace ControleDeProcessos
             return new SoldadosController().ProximoPasso(dto);
         }
 
-        public PreInscricaoDTO Executar(PreInscricaoDTO preInscricaoDTO)
-        {
-            return (PreInscricaoDTO)new PreInscricoesController(gerenciadorDeTransacao).ProximoPasso(preInscricaoDTO);
-        }
+        //public PreInscricaoDTO Executar(PreInscricaoDTO preInscricaoDTO)
+        //{
+        //    return (PreInscricaoDTO)new PreInscricoesController(gerenciadorDeTransacao).ProximoPasso(preInscricaoDTO);
+        //}
     }
 }

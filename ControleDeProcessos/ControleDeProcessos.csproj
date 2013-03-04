@@ -45,13 +45,6 @@
     <Compile Include="API\PreInscricoesController.cs" />
     <Compile Include="API\SoldadosController.cs" />
     <Compile Include="API\BaseController.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Carregada.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Finalizada.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Impressa.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Iniciada.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\PreProcessada.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Processada.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Rejeitada.cs" />
     <Compile Include="Domain\ComponenteDePreInscricao\PreInscricao.cs" />
     <Compile Include="Domain\ComponenteEstado\Estado.cs" />
     <Compile Include="Domain\ComponenteEstado\UtilizaEstado.cs" />
@@ -63,6 +56,7 @@
     <Compile Include="Processos\GerenciadorDeTransacao.cs" />
     <Compile Include="MVC\ManipularSoldado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\ProcessoPreInscricao.cs" />
     <Compile Include="Proxy\Proxy.cs" />
     <Compile Include="DTO\SoldadoDTO.cs" />
     <Compile Include="Processos\Transacao.cs" />
