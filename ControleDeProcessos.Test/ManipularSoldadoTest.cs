@@ -20,11 +20,11 @@ namespace ControleDeProcessos.Test
         }
 
         [Test]
-        public void ao_executar_o_proxy_com_uma_transacao_aberta_faz_o_soldado_sentar_e_retorna_um_objeto_com_o_soldado_sentado()
+        public void ao_executar_o_proxy_com_uma_transacao_aberta_faz_o_soldado_mudar_de_estado()
         {
-            SoldadoDTO soldado = manipularSoldado.Executar(new SoldadoDTO { Nome = "João" });
+            SoldadoDTO soldado = manipularSoldado.Executar(new SoldadoDTO { Nome = "João"});
 
-            Assert.AreEqual(soldado.Estado, "sentado");
+            Assert.AreEqual(soldado.Esta, "sentado");
         }
     }
 }

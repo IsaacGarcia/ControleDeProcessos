@@ -19,11 +19,11 @@ namespace ControleDeProcessos.Test
         }
 
         [Test]
-        public void executa_uma_atividade_do_processo_retorna_o_estado_sentado()
+        public void executa_uma_atividade_do_processo_retorna_o_objeto_modificado()
         {
-            SoldadoDTO soldadoDTO = proxy.Executar(new SoldadoDTO { Nome = "João" });
+            SoldadoDTO soldadoDTO = proxy.Executar(new SoldadoDTO { Nome = "João"});
 
-            Assert.AreEqual(soldadoDTO.Estado, "sentado");
+            Assert.AreEqual(soldadoDTO.Esta, "sentado");
         }
     }
 }
