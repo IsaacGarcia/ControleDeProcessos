@@ -21,7 +21,7 @@ namespace ControleDeProcessos
         {
             dto.UltimaTransacao = gerenciadorDeTransacao.ObterTransacao(dto);
 
-            return new Soldados().ProximoPasso(dto);
+            return new SoldadosController().ProximoPasso(dto);
         }
     }
 }

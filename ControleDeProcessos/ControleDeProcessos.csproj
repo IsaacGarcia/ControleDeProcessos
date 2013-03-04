@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Soldados.cs" />
+    <Compile Include="API\SoldadosController.cs" />
+    <Compile Include="Domain\Repositorio.cs" />
+    <Compile Include="Domain\Soldado.cs" />
     <Compile Include="Processos\GerenciadorDeTransacao.cs" />
     <Compile Include="MVC\ManipularSoldado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,9 +49,7 @@
     <Compile Include="DTO\SoldadoDTO.cs" />
     <Compile Include="Processos\Transacao.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

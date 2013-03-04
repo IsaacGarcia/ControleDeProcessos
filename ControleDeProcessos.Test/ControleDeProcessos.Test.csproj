@@ -42,11 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GerenciadorDeTransacaoTest.cs" />
-    <Compile Include="ManipularSoldadoTest.cs" />
+    <Compile Include="Processos\GerenciadorDeTransacaoTest.cs" />
+    <Compile Include="MVC\ManipularSoldadoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyTest.cs" />
-    <Compile Include="TransacaoTest.cs" />
+    <Compile Include="Proxy\ProxyTest.cs" />
+    <Compile Include="API\SoldadosControllerTest.cs" />
+    <Compile Include="Processos\TransacaoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
