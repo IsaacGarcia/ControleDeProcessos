@@ -5,14 +5,7 @@ using System.Text;
 
 namespace ControleDeProcessos
 {
-    public abstract class DTO
-    {
-        public Transacao UltimaTransacao { get; set; }
-
-        public string Processo { get; set; }
-    }
-
-    public class SoldadoDTO:DTO
+    public class SoldadoDTO : DTO
     {
         public string Esta { get; set; }
 

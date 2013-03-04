@@ -39,9 +39,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\PreInscricoesController.cs" />
     <Compile Include="API\SoldadosController.cs" />
+    <Compile Include="API\BaseController.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Carregada.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Finalizada.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Impressa.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Iniciada.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\PreProcessada.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Processada.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Estados\Rejeitada.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\PreInscricao.cs" />
+    <Compile Include="Domain\ComponenteEstado\Estado.cs" />
+    <Compile Include="Domain\ComponenteEstado\UtilizaEstado.cs" />
     <Compile Include="Domain\Repositorio.cs" />
     <Compile Include="Domain\Soldado.cs" />
+    <Compile Include="DTO\DTO.cs" />
+    <Compile Include="DTO\PreInscricaoDTO.cs" />
+    <Compile Include="MVC\ManipularPreInscricao.cs" />
     <Compile Include="Processos\GerenciadorDeTransacao.cs" />
     <Compile Include="MVC\ManipularSoldado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

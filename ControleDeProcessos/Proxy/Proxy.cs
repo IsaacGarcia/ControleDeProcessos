@@ -23,5 +23,12 @@ namespace ControleDeProcessos
 
             return new SoldadosController().ProximoPasso(dto);
         }
+
+        public PreInscricaoDTO Executar(PreInscricaoDTO preInscricaoDTO)
+        {
+            preInscricaoDTO.UltimaTransacao = gerenciadorDeTransacao.ObterTransacao(preInscricaoDTO);
+
+            return (PreInscricaoDTO)new PreInscricoesController(gerenciadorDeTransacao).ProximoPasso(preInscricaoDTO);
+        }
     }
 }

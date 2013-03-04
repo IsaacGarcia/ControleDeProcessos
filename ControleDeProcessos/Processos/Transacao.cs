@@ -20,6 +20,12 @@ namespace ControleDeProcessos
 
         public string Processo { get; set; }
 
+        public string UltimaAtividade { get; set; }
+
+        public DateTime Data { get; set; }
+
+        public DTO Dto { get; set; }
+
         public SoldadoDTO ProximoPasso(SoldadoDTO dto)
         {
             return new SoldadoDTO { Esta = "sentado" };
