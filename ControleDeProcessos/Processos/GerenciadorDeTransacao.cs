@@ -26,14 +26,9 @@ namespace ControleDeProcessos
             };
         }
 
-        public Transacao ObterTransacao(SoldadoDTO soldadoDTO)
+        public Transacao ObterTransacao(DTO dto)
         {
-            return Transacaoes.SingleOrDefault(x => x.Usuario == soldadoDTO.Nome && x.Processo == soldadoDTO.Processo);
-        }
-
-        public Transacao ObterTransacao(PreInscricaoDTO preInscricaoDTO)
-        {
-            return Transacaoes.SingleOrDefault(x => x.Usuario == preInscricaoDTO.Nome && x.Processo == preInscricaoDTO.Processo);
+            return Transacaoes.SingleOrDefault(x => x.Usuario == dto.Nome && x.Processo == dto.Processo);
         }
 
         public  void Salvar(Transacao transacao, string ultimaAtividade, DTO dto)

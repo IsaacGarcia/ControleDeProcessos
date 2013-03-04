@@ -10,25 +10,19 @@ namespace ControleDeProcessos.API
 {
     public class PreInscricoesController: BaseController
     {
-        private GerenciadorDeTransacao _gerenciamentoDeTransacao;
-
-        public PreInscricoesController(GerenciadorDeTransacao gerenciamentoDeTransacao)
+        public PreInscricoesController(GerenciadorDeTransacao gerenciamentoDeTransacao):base(gerenciamentoDeTransacao)
         {
-            _gerenciamentoDeTransacao = gerenciamentoDeTransacao;
         }
 
-        protected override DTO ProximoPassoEspecifico(DTO dto)
+        protected override DTO ProximoPassoEspecifico(DTO dto, Transacao ultimaTransacao)
         {
             Repositorio repositorio = new Repositorio();
-
-            Transacao transacao = _gerenciamentoDeTransacao.ObterTransacao((PreInscricaoDTO)dto);
-
-            PreInscricao preInscricao = repositorio.ObterPreInscricaoDeAcordoComA(transacao);
+            PreInscricao preInscricao = repositorio.ObterPreInscricaoDeAcordoComA(ultimaTransacao);
 
             preInscricao.Estado.DTO = (PreInscricaoDTO)dto;
             preInscricao.ProximoEstado();
 
-            RegistrarTransacao(dto, ultimaAtividade: preInscricao.Esta);
+            dto.UltimaTransacao = ultimaTransacao;
 
             return new PreInscricaoDTO { Esta = preInscricao.Esta };
         }

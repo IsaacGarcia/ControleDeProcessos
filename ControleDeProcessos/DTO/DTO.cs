@@ -13,5 +13,8 @@ namespace ControleDeProcessos
         public string Processo { get; set; }
 
         public virtual string Esta { get; set; }
+
+        public string Nome { get; set; }
+
     }
 }

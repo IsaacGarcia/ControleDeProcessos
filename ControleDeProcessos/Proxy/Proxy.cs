@@ -26,8 +26,6 @@ namespace ControleDeProcessos
 
         public PreInscricaoDTO Executar(PreInscricaoDTO preInscricaoDTO)
         {
-            preInscricaoDTO.UltimaTransacao = gerenciadorDeTransacao.ObterTransacao(preInscricaoDTO);
-
             return (PreInscricaoDTO)new PreInscricoesController(gerenciadorDeTransacao).ProximoPasso(preInscricaoDTO);
         }
     }
