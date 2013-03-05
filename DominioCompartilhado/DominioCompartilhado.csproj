@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BF26AD4-1123-48DD-9254-51FD935D30DB}</ProjectGuid>
+    <ProjectGuid>{1E0FF15D-CB39-447C-8635-D57F02254EB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ControleDeProcessos</RootNamespace>
-    <AssemblyName>ControleDeProcessos</AssemblyName>
+    <RootNamespace>DominioCompartilhado</RootNamespace>
+    <AssemblyName>DominioCompartilhado</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,9 +45,6 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\Library\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="Stateless">
-      <HintPath>..\lib\Stateless.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,49 +52,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Vital.InfraStructure">
-      <HintPath>..\..\Library\Vital.InfraStructure.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\PreInscricoesController.cs" />
-    <Compile Include="API\Regulamentos.cs" />
-    <Compile Include="API\SoldadosController.cs" />
-    <Compile Include="API\BaseController.cs" />
-    <Compile Include="Core\Infra\ExtensionActivities\Arquivo.cs" />
-    <Compile Include="Core\IServicoRepositorioDeArquivos.cs" />
-    <Compile Include="Core\IServicoTransformarArquivo.cs" />
-    <Compile Include="Core\Servicos\ServicoRepositorioDeArquivo.cs" />
-    <Compile Include="Core\Servicos\ServicoTransformarArquivo.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\Atividades.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\StateMachineWrapper.cs" />
-    <Compile Include="Domain\ComponenteEstado\Estado.cs" />
-    <Compile Include="Domain\ComponenteEstado\UtilizaEstado.cs" />
-    <Compile Include="Domain\Repositorio.cs" />
-    <Compile Include="Domain\ServicoPreProcessamentoPreInscricao.cs" />
-    <Compile Include="Domain\Soldado.cs" />
-    <Compile Include="DTO\ArquivoDTO.cs" />
-    <Compile Include="DTO\DTO.cs" />
-    <Compile Include="DTO\PreInscricaoDTO.cs" />
-    <Compile Include="DTO\RelatorioPreProcessamentoDaPreInscricaoDTO.cs" />
-    <Compile Include="MVC\ManipularPreInscricao.cs" />
-    <Compile Include="Processos\GerenciadorDeTransacao.cs" />
-    <Compile Include="MVC\ManipularSoldado.cs" />
+    <Compile Include="Arquivo.cs" />
+    <Compile Include="Entidade.cs" />
+    <Compile Include="PessoaFisica.cs" />
+    <Compile Include="PessoaJuridica.cs" />
+    <Compile Include="Plano.cs" />
+    <Compile Include="Repositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxy\ProcessoPreInscricao.cs" />
-    <Compile Include="Proxy\Proxy.cs" />
-    <Compile Include="DTO\SoldadoDTO.cs" />
-    <Compile Include="Processos\Transacao.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DominioB\DominioRegulamento.csproj">
-      <Project>{7e68bc02-94db-45a9-b5cf-d977a502e719}</Project>
-      <Name>DominioRegulamento</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DominioCompartilhado\DominioCompartilhado.csproj">
-      <Project>{1e0ff15d-cb39-447c-8635-d57f02254eb0}</Project>
-      <Name>DominioCompartilhado</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ControleDeProcessos.Core.Infra.ExtensionActivities;
 
 namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
 {
@@ -63,11 +64,6 @@ namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
 
     public class AtividadeSubirArquivo : Atividade
     {
-        public IServicoRepositorioDeArquivos FabricarServicoRepositorioDeArquivo()
-        {
-            return new ServicoRepositorioDeArquivo();
-        }
-
         public IServicoTransformarArquivo FabricarServicoTransformarArquivo()
         {
             return new ServicoTransformarArquivo();
@@ -80,7 +76,7 @@ namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
             if (preInscricaoDTO.ExtensaoDoArquivo == "pdf")
                 throw new Exception("");
 
-            var arquivo = SalvarArquivo(preInscricaoDTO);
+            var arquivo = preInscricaoDTO.Arquivo.Salvar();
 
             var relatorio =  PreProcessar(arquivo);
 
@@ -98,15 +94,6 @@ namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
         private RelatorioPreProcessamentoDaPreInscricaoDTO ObterPreProcessamento(DataTable dadosDosPreInscritos)
         {
             return new ServicoPreProcessamentoPreInscricao().PreProcessar(dadosDosPreInscritos);
-        }
-
-        private ArquivoDTO SalvarArquivo(PreInscricaoDTO preInscricaoDTO)
-        {
-            ArquivoDTO arquivo = new ArquivoDTO();
-
-            arquivo.Arquivo = preInscricaoDTO.Arquivo;
-
-            return (ArquivoDTO)FabricarServicoRepositorioDeArquivo().Salvar(arquivo);
         }
     }
 }
