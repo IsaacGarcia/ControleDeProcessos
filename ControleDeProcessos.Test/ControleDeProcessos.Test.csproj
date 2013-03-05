@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\RepositorioTest.cs" />
     <Compile Include="MVC\ManipularPreInscricaoTest.cs" />
     <Compile Include="Processos\GerenciadorDeTransacaoTest.cs" />
     <Compile Include="MVC\ManipularSoldadoTest.cs" />
@@ -59,6 +58,9 @@
       <Project>{8bf26ad4-1123-48dd-9254-51fd935d30db}</Project>
       <Name>ControleDeProcessos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Domain\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeProcessos
 {
-    public abstract class DTO
+    public class DTO
     {
         public Transacao UltimaTransacao { get; set; }
 
@@ -17,5 +17,7 @@ namespace ControleDeProcessos
         public string Nome { get; set; }
 
         public string Acao { get; set; }
+
+        public string Erros { get; set; }
     }
 }

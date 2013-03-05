@@ -45,7 +45,8 @@
     <Compile Include="API\PreInscricoesController.cs" />
     <Compile Include="API\SoldadosController.cs" />
     <Compile Include="API\BaseController.cs" />
-    <Compile Include="Domain\ComponenteDePreInscricao\PreInscricao.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\Atividades.cs" />
+    <Compile Include="Domain\ComponenteDePreInscricao\StateMachineWrapper.cs" />
     <Compile Include="Domain\ComponenteEstado\Estado.cs" />
     <Compile Include="Domain\ComponenteEstado\UtilizaEstado.cs" />
     <Compile Include="Domain\Repositorio.cs" />

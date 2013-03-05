@@ -15,9 +15,24 @@ namespace ControleDeProcessos.MVC
             _proxy = proxy;
         }
 
-        public PreInscricaoDTO Executar(PreInscricaoDTO preInscricaoDTO)
+        public DTO Upload(PreInscricaoDTO preInscricaoDTO)
         {
-            return (PreInscricaoDTO)_proxy.ProcessoPreInscricao.Upload(preInscricaoDTO);
+            return _proxy.ProcessoPreInscricao.Upload(preInscricaoDTO);
+        }
+
+        public DTO PreProcessar(PreInscricaoDTO preInscricaoDTO)
+        {
+            return _proxy.ProcessoPreInscricao.PreProcessar(preInscricaoDTO);
+        }
+
+        public DTO Processar(PreInscricaoDTO preInscricaoDTO)
+        {
+            return _proxy.ProcessoPreInscricao.Processar(preInscricaoDTO);
+        }
+
+        public DTO Imprimir(PreInscricaoDTO preInscricaoDTO)
+        {
+            return _proxy.ProcessoPreInscricao.Imprimir(preInscricaoDTO);
         }
     }
 }

@@ -9,38 +9,34 @@ using System.Threading.Tasks;
 
 namespace ControleDeProcessos.API
 {
-    public class PreInscricoesController: BaseController
+    public class PreInscricoesController : BaseController
     {
-        public PreInscricoesController(GerenciadorDeTransacao gerenciamentoDeTransacao):base(gerenciamentoDeTransacao)
+        public PreInscricoesController(GerenciadorDeTransacao gerenciamentoDeTransacao)
+            : base(gerenciamentoDeTransacao)
         {
         }
 
         protected override DTO ProximoPassoEspecifico(DTO dto, Transacao ultimaTransacao)
         {
-            PreInscricao preInscricao = new PreInscricao();
-
-            // Observer
-            preInscricao.Processar("jhghjG");
-
-            return new PreInscricaoDTO();
+            return dto;
         }
 
-        protected override void ConfigurarMaquina(StateMachine<string, string> maquina)
+        protected override void ConfigurarMaquina(StateMachine<string, string> maquina, DTO dto)
         {
-            maquina.Configure("Iniciada")
-                .Permit("Carregar", "Carregada")
-                .Permit("Rejeitar", "Rejeitada");
+            Acao carregar = new Acao();
+            Acao processar = new Acao();
 
-            maquina.Configure("Rejeitada")
-                .Permit("Carregar", "Carregada");
+            carregar.Registrar(new AtividadeSubirArquivo());
+            processar.Registrar(new AtividadeProcessarArquivo());
+
+            maquina.Configure("Iniciada")
+                .PermitIf("Carregar", "Carregada", () => carregar.Executar(dto));
 
             maquina.Configure("Carregada")
-                .Permit("PreProcessar", "PreProcessada")
-                .Permit("Rejeitar", "Rejeitada");
+                .Permit("PreProcessar", "PreProcessada");
 
             maquina.Configure("PreProcessada")
-                .Permit("Processar", "Processada")
-                .Permit("Rejeitar", "Rejeitada");
+                .PermitIf("Processar", "Processada", ()=> processar.Executar(dto));
 
             maquina.Configure("Processada")
                 .Permit("Imprimir", "Impressa");

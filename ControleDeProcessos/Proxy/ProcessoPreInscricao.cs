@@ -19,22 +19,25 @@ namespace ControleDeProcessos
         public virtual DTO Upload(DTO dto)
         {
             dto.Acao = "Carregar";
-            return (PreInscricaoDTO)new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
+            return new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
         }
 
         public virtual DTO PreProcessar(DTO dto)
         {
-            return (PreInscricaoDTO)new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
+            dto.Acao = "PreProcessar";
+            return new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
         }
 
         public virtual DTO Processar(DTO dto)
         {
-            return (PreInscricaoDTO)new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
+            dto.Acao = "Processar";
+            return new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
         }
 
         public virtual DTO Imprimir(DTO dto)
         {
-            return (PreInscricaoDTO)new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
+            dto.Acao = "Imprimir";
+            return new PreInscricoesController(_gerenciadorDeTransacao).ProximoPasso(dto);
         }
     }
 }

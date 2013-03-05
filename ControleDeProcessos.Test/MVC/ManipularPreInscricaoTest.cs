@@ -24,7 +24,7 @@ namespace ControleDeProcessos.Test.MVC
         {
             var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac1", Processo = "Manipular Pré-Inscrição" };
 
-            var dto = manipularPreInscricao.Executar(preInscricao);
+            var dto = manipularPreInscricao.Upload(preInscricao);
 
             Assert.AreEqual(dto.Esta, "Carregada");
         }
@@ -34,19 +34,9 @@ namespace ControleDeProcessos.Test.MVC
         {
             var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "pdf", Nome = "Isaac1", Processo = "Manipular Pré-Inscrição" };
 
-            var dto = manipularPreInscricao.Executar(preInscricao);
+            var dtoRetornado = manipularPreInscricao.Upload(preInscricao);
 
-            Assert.AreEqual(dto.Esta, "Rejeitada");
-        }
-
-        [Test]
-        public void carregar_uma_pre_inscricao_rejeitada()
-        {
-            var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac2b", Processo = "Manipular Pré-Inscrição" };
-
-            var dto = manipularPreInscricao.Executar(preInscricao);
-
-            Assert.AreEqual(dto.Esta, "Carregada");
+            Assert.That("Iniciada", Is.EqualTo(dtoRetornado.Esta));
         }
 
         [Test]
@@ -54,9 +44,9 @@ namespace ControleDeProcessos.Test.MVC
         {
             var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac2", Processo = "Manipular Pré-Inscrição" };
 
-            var dto = manipularPreInscricao.Executar(preInscricao);
+            var dto = manipularPreInscricao.PreProcessar(preInscricao);
 
-            Assert.AreEqual(dto.Esta, "Pré-processada");
+            Assert.AreEqual(dto.Esta, "PreProcessada");
         }
 
         [Test]
@@ -64,9 +54,9 @@ namespace ControleDeProcessos.Test.MVC
         {
             var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac3", Processo = "Manipular Pré-Inscrição" };
 
-            var dto = manipularPreInscricao.Executar(preInscricao);
+            var dto = manipularPreInscricao.Processar(preInscricao);
 
-            Assert.AreEqual(dto.Esta, "processada");
+            Assert.AreEqual(dto.Esta, "Processada");
         }
 
         [Test]
@@ -74,38 +64,9 @@ namespace ControleDeProcessos.Test.MVC
         {
             var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac4", Processo = "Manipular Pré-Inscrição" };
 
-            var dto = manipularPreInscricao.Executar(preInscricao);
+            var dto = manipularPreInscricao.Imprimir(preInscricao);
 
             Assert.AreEqual(dto.Esta, "Impressa");
-        }
-
-        [Test]
-        public void finalizar_uma_pre_inscricao_impressa()
-        {
-            var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac5", Processo = "Manipular Pré-Inscrição" };
-
-            var dto = manipularPreInscricao.Executar(preInscricao);
-
-            Assert.AreEqual(dto.Esta, "Finalizada");
-        }
-
-        [Test]
-        public void finalizar_uma_pre_inscricao_finalizada_deve_lancar_excecao()
-        {
-            string message = string.Empty;
-
-            try
-            {
-                var preInscricao = new PreInscricaoDTO { ExtensaoDoArquivo = "xls", Nome = "Isaac6", Processo = "Manipular Pré-Inscrição" };
-
-                var dto = manipularPreInscricao.Executar(preInscricao);
-            }
-            catch (Exception ex)
-            {
-                message = ex.Message;
-            }
-
-            Assert.AreEqual("Esta pré-inscrição já foi finalizada!", message);
         }
     }
 }

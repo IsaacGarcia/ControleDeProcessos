@@ -11,6 +11,8 @@ namespace ControleDeProcessos.API
     {
         private GerenciadorDeTransacao _gerenciamentoDeTransacao;
 
+        public StateMachine<string, string> Maquina { get; set; }
+
         public BaseController(GerenciadorDeTransacao gerenciamentoDeTransacao)
         {
             _gerenciamentoDeTransacao = gerenciamentoDeTransacao;
@@ -20,21 +22,39 @@ namespace ControleDeProcessos.API
         {
             Transacao transacao = _gerenciamentoDeTransacao.ObterTransacao(dto);
 
-            var maquina = new StateMachine<string, string>(transacao.UltimaAtividade);
+            Maquina = new StateMachine<string,string>(transacao.UltimaAtividade);
 
-            ConfigurarMaquina(maquina);
+            ConfigurarMaquina(Maquina, dto);
 
-            var resultado = ProximoPassoEspecifico(dto, transacao);
+            var resultado = new DTO();
 
-            maquina.Fire(dto.Acao);
+            try
+            {
+                ExecutarAtividade(dto);
+            }
+            catch(Exception ex)
+            {
+                resultado.Erros = ex.Message;
+            }
+
+            resultado.Esta = Maquina.State;
 
             RegistrarTransacao(dto, ultimaAtividade: resultado.Esta, ultimaTransacao: transacao);
 
             return resultado;
         }
+        
+        public void ExecutarAtividade(DTO dto)
+        {
+            if (Maquina.CanFire(dto.Acao))
+                Maquina.Fire(dto.Acao);
+            else
+                throw new Exception("Transição não permitida");
+        }
+
 
         protected abstract DTO ProximoPassoEspecifico(DTO dto, Transacao ultimaTransacao);
-        protected abstract void ConfigurarMaquina(StateMachine<string, string> maquina);
+        protected abstract void ConfigurarMaquina(StateMachine<string, string> maquina, DTO dto);
 
         public void RegistrarTransacao(DTO dto, string ultimaAtividade, Transacao ultimaTransacao)
         {
