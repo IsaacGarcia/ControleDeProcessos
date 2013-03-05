@@ -28,7 +28,7 @@ namespace ControleDeProcessos
 
         public Transacao ObterTransacao(DTO dto)
         {
-            return Transacaoes.SingleOrDefault(x => x.Usuario == dto.Nome && x.Processo == dto.Processo);
+            return Transacaoes.SingleOrDefault(x => x.Usuario == dto.Usuario && x.Processo == dto.Processo);
         }
 
         public  void Salvar(Transacao transacao, string ultimaAtividade, DTO dto)

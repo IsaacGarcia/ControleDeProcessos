@@ -13,6 +13,8 @@ namespace ControleDeProcessos.API
 
         public StateMachine<string, string> Maquina { get; set; }
 
+        public DTO Retorno { get; set; }
+
         public BaseController(GerenciadorDeTransacao gerenciamentoDeTransacao)
         {
             _gerenciamentoDeTransacao = gerenciamentoDeTransacao;

@@ -11,5 +11,11 @@ namespace ControleDeProcessos
         public string ExtensaoDoArquivo { get; set; }
 
         public string Parametro { get; set; }
+
+        public byte[] Arquivo { get; set; }
+
+        public int NumeroInsert { get; set; }
+
+        public int NumeroUpdate { get; set; }
     }
 }

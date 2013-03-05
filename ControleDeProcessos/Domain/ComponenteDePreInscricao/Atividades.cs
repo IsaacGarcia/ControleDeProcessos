@@ -1,7 +1,10 @@
 ﻿using ControleDeProcessos.API;
+using ControleDeProcessos.Core;
+using ControleDeProcessos.Core.Servicos;
 using ControleDeProcessos.Domain.ComponenteEstado;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +13,7 @@ namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
 {
     public class Acao
     {
-        public string Nome{get;set;}
+        public string Nome { get; set; }
 
         private IList<Atividade> _atividades;
 
@@ -45,7 +48,7 @@ namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
         }
     }
 
-    public abstract class Atividade 
+    public abstract class Atividade
     {
         public abstract void Executar(DTO dto);
     }
@@ -54,18 +57,56 @@ namespace ControleDeProcessos.Domain.ComponenteDePreInscricao
     {
         public override void Executar(DTO dto)
         {
-            
+
         }
     }
 
     public class AtividadeSubirArquivo : Atividade
     {
+        public IServicoRepositorioDeArquivos FabricarServicoRepositorioDeArquivo()
+        {
+            return new ServicoRepositorioDeArquivo();
+        }
+
+        public IServicoTransformarArquivo FabricarServicoTransformarArquivo()
+        {
+            return new ServicoTransformarArquivo();
+        }
+
         public override void Executar(DTO dto)
         {
             var preInscricaoDTO = (PreInscricaoDTO)dto;
 
             if (preInscricaoDTO.ExtensaoDoArquivo == "pdf")
                 throw new Exception("");
+
+            var arquivo = SalvarArquivo(preInscricaoDTO);
+
+            var relatorio =  PreProcessar(arquivo);
+
+            preInscricaoDTO.NumeroInsert = relatorio.NumeroDeNovosPreInscritos;
+            preInscricaoDTO.NumeroUpdate = relatorio.NumeroDePreInscritosPendentesDeAtualizacao;
+        }
+
+        private RelatorioPreProcessamentoDaPreInscricaoDTO PreProcessar(ArquivoDTO arquivo)
+        {
+            ArquivoDTO arquivoDto = (ArquivoDTO)FabricarServicoTransformarArquivo().DeTextoParaDataTable(arquivo);
+
+            return ObterPreProcessamento(arquivoDto.DadosDoArquivo);
+        }
+
+        private RelatorioPreProcessamentoDaPreInscricaoDTO ObterPreProcessamento(DataTable dadosDosPreInscritos)
+        {
+            return new ServicoPreProcessamentoPreInscricao().PreProcessar(dadosDosPreInscritos);
+        }
+
+        private ArquivoDTO SalvarArquivo(PreInscricaoDTO preInscricaoDTO)
+        {
+            ArquivoDTO arquivo = new ArquivoDTO();
+
+            arquivo.Arquivo = preInscricaoDTO.Arquivo;
+
+            return (ArquivoDTO)FabricarServicoRepositorioDeArquivo().Salvar(arquivo);
         }
     }
 }

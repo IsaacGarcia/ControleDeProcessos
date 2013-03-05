@@ -22,7 +22,7 @@ namespace ControleDeProcessos.Test
         [Test]
         public void ao_obter_um_soldado_em_pe_e_executando_o_metodo_proximo_estado_o_mesmo_fica_sentado()
         {
-            var soldado = soldados.ProximoPasso(new SoldadoDTO { Nome = "João" });
+            var soldado = soldados.ProximoPasso(new SoldadoDTO { Usuario = "João" });
 
             Assert.AreEqual(soldado.Esta, "sentado");
         }
@@ -30,7 +30,7 @@ namespace ControleDeProcessos.Test
           [Test]
         public void ao_obter_um_soldado_em_pe_e_executando_o_metodo_proximo_estado_o_mesmo_fica_em_pe()
         {
-            var soldado = soldados.ProximoPasso(new SoldadoDTO { Nome = "João2" });
+            var soldado = soldados.ProximoPasso(new SoldadoDTO { Usuario = "João2" });
 
             Assert.AreEqual(soldado.Esta, "em pé");
         }

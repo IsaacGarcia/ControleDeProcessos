@@ -22,7 +22,7 @@ namespace ControleDeProcessos.Test
         [Test]
         public void ao_executar_o_proxy_com_uma_transacao_aberta_faz_o_soldado_mudar_de_estado()
         {
-            SoldadoDTO soldado = manipularSoldado.Executar(new SoldadoDTO { Nome = "João", Processo="Manipular Soldado"});
+            SoldadoDTO soldado = manipularSoldado.Executar(new SoldadoDTO { Usuario = "João", Processo="Manipular Soldado"});
 
             Assert.AreEqual(soldado.Esta, "sentado");
         }

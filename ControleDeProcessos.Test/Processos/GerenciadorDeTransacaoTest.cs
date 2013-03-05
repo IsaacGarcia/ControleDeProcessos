@@ -21,7 +21,7 @@ namespace ControleDeProcessos.Test
         [Test]
         public void obter_uma_transacao_de_acordo_com_processo_e_usuario()
         {
-            Transacao transacao = gerenciadorDeTransacao.ObterTransacao(new SoldadoDTO() { Nome = "João", Processo = "Manipular Soldado" });
+            Transacao transacao = gerenciadorDeTransacao.ObterTransacao(new SoldadoDTO() { Usuario = "João", Processo = "Manipular Soldado" });
 
             Assert.AreEqual(transacao.Estado, "aberta");
         }

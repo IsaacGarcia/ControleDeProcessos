@@ -30,7 +30,7 @@ namespace ControleDeProcessos.API
             processar.Registrar(new AtividadeProcessarArquivo());
 
             maquina.Configure("Iniciada")
-                .PermitIf("Carregar", "Carregada", () => carregar.Executar(dto));
+                .PermitIf("Carregar", "Carregada", () =>  carregar.Executar(dto) );
 
             maquina.Configure("Carregada")
                 .Permit("PreProcessar", "PreProcessada");

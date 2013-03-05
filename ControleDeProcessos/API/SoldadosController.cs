@@ -13,11 +13,11 @@ namespace ControleDeProcessos.API
         {
             Repositorio repositorio = new Repositorio();
 
-            Soldado soldado = repositorio.ObterSoldadoPeloNome(dto.Nome);
+            Soldado soldado = repositorio.ObterSoldadoPeloNome(dto.Usuario);
 
             soldado.ProximoEstado();
 
-            return new SoldadoDTO { Nome = soldado.Nome, Esta = soldado.Esta };
+            return new SoldadoDTO { Usuario = soldado.Nome, Esta = soldado.Esta };
         }
     }
 }
